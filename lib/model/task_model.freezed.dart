@@ -20,10 +20,11 @@ TaskModel _$TaskModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$TaskModel {
-  String get name => throw _privateConstructorUsedError;
+  String get title => throw _privateConstructorUsedError;
   String get time => throw _privateConstructorUsedError;
   String get date => throw _privateConstructorUsedError;
-  int get id => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
+  bool get isTodoCompleted => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +37,12 @@ abstract class $TaskModelCopyWith<$Res> {
   factory $TaskModelCopyWith(TaskModel value, $Res Function(TaskModel) then) =
       _$TaskModelCopyWithImpl<$Res, TaskModel>;
   @useResult
-  $Res call({String name, String time, String date, int id});
+  $Res call(
+      {String title,
+      String time,
+      String date,
+      String id,
+      bool isTodoCompleted});
 }
 
 /// @nodoc
@@ -52,15 +58,16 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = null,
+    Object? title = null,
     Object? time = null,
     Object? date = null,
     Object? id = null,
+    Object? isTodoCompleted = null,
   }) {
     return _then(_value.copyWith(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
               as String,
       time: null == time
           ? _value.time
@@ -73,7 +80,11 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
+      isTodoCompleted: null == isTodoCompleted
+          ? _value.isTodoCompleted
+          : isTodoCompleted // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -85,7 +96,12 @@ abstract class _$$_TaskModelCopyWith<$Res> implements $TaskModelCopyWith<$Res> {
       __$$_TaskModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, String time, String date, int id});
+  $Res call(
+      {String title,
+      String time,
+      String date,
+      String id,
+      bool isTodoCompleted});
 }
 
 /// @nodoc
@@ -99,15 +115,16 @@ class __$$_TaskModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = null,
+    Object? title = null,
     Object? time = null,
     Object? date = null,
     Object? id = null,
+    Object? isTodoCompleted = null,
   }) {
     return _then(_$_TaskModel(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
               as String,
       time: null == time
           ? _value.time
@@ -120,35 +137,43 @@ class __$$_TaskModelCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
+      isTodoCompleted: null == isTodoCompleted
+          ? _value.isTodoCompleted
+          : isTodoCompleted // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_TaskModel implements _TaskModel {
+class _$_TaskModel extends _TaskModel {
   const _$_TaskModel(
-      {required this.name,
+      {required this.title,
       required this.time,
       required this.date,
-      required this.id});
+      required this.id,
+      required this.isTodoCompleted})
+      : super._();
 
   factory _$_TaskModel.fromJson(Map<String, dynamic> json) =>
       _$$_TaskModelFromJson(json);
 
   @override
-  final String name;
+  final String title;
   @override
   final String time;
   @override
   final String date;
   @override
-  final int id;
+  final String id;
+  @override
+  final bool isTodoCompleted;
 
   @override
   String toString() {
-    return 'TaskModel(name: $name, time: $time, date: $date, id: $id)';
+    return 'TaskModel(title: $title, time: $time, date: $date, id: $id, isTodoCompleted: $isTodoCompleted)';
   }
 
   @override
@@ -156,15 +181,18 @@ class _$_TaskModel implements _TaskModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_TaskModel &&
-            (identical(other.name, name) || other.name == name) &&
+            (identical(other.title, title) || other.title == title) &&
             (identical(other.time, time) || other.time == time) &&
             (identical(other.date, date) || other.date == date) &&
-            (identical(other.id, id) || other.id == id));
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.isTodoCompleted, isTodoCompleted) ||
+                other.isTodoCompleted == isTodoCompleted));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name, time, date, id);
+  int get hashCode =>
+      Object.hash(runtimeType, title, time, date, id, isTodoCompleted);
 
   @JsonKey(ignore: true)
   @override
@@ -180,24 +208,28 @@ class _$_TaskModel implements _TaskModel {
   }
 }
 
-abstract class _TaskModel implements TaskModel {
+abstract class _TaskModel extends TaskModel {
   const factory _TaskModel(
-      {required final String name,
+      {required final String title,
       required final String time,
       required final String date,
-      required final int id}) = _$_TaskModel;
+      required final String id,
+      required final bool isTodoCompleted}) = _$_TaskModel;
+  const _TaskModel._() : super._();
 
   factory _TaskModel.fromJson(Map<String, dynamic> json) =
       _$_TaskModel.fromJson;
 
   @override
-  String get name;
+  String get title;
   @override
   String get time;
   @override
   String get date;
   @override
-  int get id;
+  String get id;
+  @override
+  bool get isTodoCompleted;
   @override
   @JsonKey(ignore: true)
   _$$_TaskModelCopyWith<_$_TaskModel> get copyWith =>
